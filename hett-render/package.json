@@ -1,0 +1,15 @@
+{
+  "name": "hett-estudio-biblico",
+  "version": "1.0.0",
+  "description": "Estudio Bíblico IUMP Recoleta",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
