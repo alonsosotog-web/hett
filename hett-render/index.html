@@ -53,7 +53,7 @@
   display: flex; align-items: center; justify-content: center;
 }
 #login-overlay.hidden { display: none; }
-\.login-box {
+.login-box {
   position: relative; z-index: 10000;
   background: rgba(12,38,42,0.9);
   backdrop-filter: blur(20px);
@@ -127,25 +127,6 @@
   position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(10,30,32,0.35) 0%, rgba(10,30,32,0.55) 100%);
 }
-
-#login-overlay {
-  position: fixed; inset: 0; z-index: 9999;
-  background: transparent;
-  display: flex; align-items: center; justify-content: center;
-}
-\.login-box {
-  position: relative; z-index: 10000;
-  background: rgba(12,38,42,0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(232,125,74,0.4);
-  border-radius: 20px;
-  padding: 36px 32px;
-  width: min(380px, 92vw);
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(232,168,120,0.2);
-}
-
 
 body { font-family: 'Nunito', sans-serif; background: var(--teal-d); color: var(--cream); min-height: 100vh; }
 
