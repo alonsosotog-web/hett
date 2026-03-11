@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Fondo degradado sunset -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d4a52"/>
+      <stop offset="35%" style="stop-color:#1a6868"/>
+      <stop offset="60%" style="stop-color:#8a5030"/>
+      <stop offset="80%" style="stop-color:#c85520"/>
+      <stop offset="100%" style="stop-color:#f08038"/>
+    </linearGradient>
+    <linearGradient id="text" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#ffe0c0"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:transparent"/>
+      <stop offset="50%" style="stop-color:#f09050"/>
+      <stop offset="100%" style="stop-color:transparent"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo redondeado -->
+  <rect width="512" height="512" rx="110" fill="url(#bg)"/>
+
+  <!-- Overlay oscuro sutil -->
+  <rect width="512" height="512" rx="110" fill="rgba(4,16,22,0.30)"/>
+
+  <!-- "IUMP" pequeño arriba -->
+  <text x="256" y="108" text-anchor="middle" font-family="Georgia, serif"
+        font-size="48" font-weight="700" fill="rgba(255,240,220,0.75)"
+        letter-spacing="14">IUMP</text>
+
+  <!-- "HETT" grande central -->
+  <text x="256" y="280" text-anchor="middle" font-family="Georgia, serif"
+        font-size="178" font-weight="900" fill="url(#text)"
+        letter-spacing="10">HETT</text>
+
+  <!-- Línea decorativa -->
+  <rect x="80" y="310" width="352" height="3" rx="1.5" fill="url(#line)"/>
+
+  <!-- "RECOLETA" abajo -->
+  <text x="256" y="380" text-anchor="middle" font-family="Georgia, serif"
+        font-size="42" font-weight="700" fill="rgba(255,200,140,0.80)"
+        letter-spacing="10">RECOLETA</text>
+
+  <!-- Subtítulo -->
+  <text x="256" y="434" text-anchor="middle" font-family="Georgia, serif"
+        font-size="26" font-style="italic" fill="rgba(255,220,170,0.60)"
+        letter-spacing="3">Hoy Es Tu Tiempo</text>
+</svg>
