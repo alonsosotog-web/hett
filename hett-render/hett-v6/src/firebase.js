@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, doc, setDoc, getDoc, getDocs, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore'
+import { getFirestore, collection, doc, setDoc, getDoc, getDocs, onSnapshot, addDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBAOLtKoXstkSRmcUxrwjkWvSivR3BJwm0",
@@ -18,7 +18,7 @@ export const db = getFirestore(app)
 export async function guardarTest(codigo, datos) {
   await setDoc(doc(db, 'tests', codigo), {
     ...datos,
-    creadoEn: serverTimestamp(),
+    creadoEn: Date.now(),
     activo: true
   })
 }
@@ -45,7 +45,7 @@ export async function guardarRespuestas(codigo, nombre, apellido, datos) {
     nombre,
     apellido,
     ...datos,
-    respondidoEn: serverTimestamp()
+    respondidoEn: Date.now()
   })
 }
 
@@ -62,7 +62,7 @@ export async function guardarPregunta(datos) {
   await addDoc(collection(db, 'preguntas'), {
     ...datos,
     fecha: new Date().toLocaleDateString('es-CL'),
-    creadoEn: serverTimestamp(),
+    creadoEn: Date.now(),
     estado: 'pendiente',
     respuesta: ''
   })
