@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, doc, setDoc, getDoc, getDocs, onSnapshot, addDoc } from 'firebase/firestore'
+import { initializeFirestore, collection, doc, setDoc, getDoc, getDocs, onSnapshot, addDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBAOLtKoXstkSRmcUxrwjkWvSivR3BJwm0",
@@ -12,7 +12,11 @@ const firebaseConfig = {
 }
 
 const app = initializeApp(firebaseConfig)
-export const db = getFirestore(app)
+
+// Forzar Long Polling en vez de gRPC — necesario para Render y otros hostings
+export const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true
+})
 
 // Guardar test activo
 export async function guardarTest(codigo, datos) {
@@ -73,7 +77,7 @@ export function escucharMisPreguntas(nombre, apellido, callback) {
   return onSnapshot(collection(db, 'preguntas'), (snap) => {
     const todas = snap.docs.map(d => ({ id: d.id, ...d.data() }))
     const mias = todas.filter(p => p.nombre === nombre && p.apellido === apellido)
-    callback(mias.sort((a, b) => (b.creadoEn?.seconds || 0) - (a.creadoEn?.seconds || 0)))
+    callback(mias.sort((a, b) => (b.creadoEn || 0) - (a.creadoEn || 0)))
   })
 }
 
