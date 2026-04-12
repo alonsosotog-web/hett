@@ -239,10 +239,37 @@ export default function ProfesorDashboard({ onLogout, testActivo }) {
     if (!titulo.trim()) return
     setGenerando(true)
     const codigo = Math.random().toString(36).substring(2, 8).toUpperCase()
+    // Timeout de 15 segundos para no quedar bloqueado
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('TIMEOUT')), 15000)
+    )
     try {
-      await guardarTest(codigo, { titulo, tema, numQ, preguntas: preguntas.map(p => ({ texto: p.texto, opciones: p.opciones.slice(0, p.numOpciones), correcta: p.correcta, explicacion: p.explicacion })), fecha: new Date().toLocaleDateString('es-CL'), generadoTs: Date.now(), codigo })
-      setCodigoActual(codigo); setWaVisible(true); setTab('participar')
-    } catch (e) { console.error(e) }
+      await Promise.race([
+        guardarTest(codigo, {
+          titulo, tema, numQ,
+          preguntas: preguntas.map(p => ({
+            texto: p.texto,
+            opciones: p.opciones.slice(0, p.numOpciones),
+            correcta: p.correcta,
+            explicacion: p.explicacion
+          })),
+          fecha: new Date().toLocaleDateString('es-CL'),
+          generadoTs: Date.now(),
+          codigo
+        }),
+        timeout
+      ])
+      setCodigoActual(codigo)
+      setWaVisible(true)
+      setTab('participar')
+    } catch (e) {
+      console.error('Error Firebase:', e)
+      if (e.message === 'TIMEOUT') {
+        alert('⚠️ Tiempo de espera agotado.\n\nVerifica tu conexión a internet e intenta nuevamente.\n\nSi el problema persiste, las reglas de Firebase pueden estar bloqueando la escritura.')
+      } else {
+        alert('⚠️ Error al guardar: ' + (e.message || 'Revisa tu conexión a internet.'))
+      }
+    }
     setGenerando(false)
   }
 
