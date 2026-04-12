@@ -308,6 +308,8 @@ export default function ProfesorDashboard({ onLogout, testActivo }) {
     }
     setDescargando(false)
   }
+
+  const compartirWA = () => {
     const msg = `📖 *HETT — Escuela Bíblica IUMP Recoleta*\n\n📚 Clase: ${titulo}\n📖 Tema: ${tema}\n\n🔑 Código: *${codigoActual}*\n🌐 Ingresa en: https://hett.onrender.com\n\n_Hoy Es Tu Tiempo · Ven a Jesús_`
     window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank')
   }
